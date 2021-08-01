@@ -61,13 +61,9 @@ const usersPut = async(req = request, res = response) => {
 const usersDelete = async(req = request, res = response) => {
 
     const {id} = req.params;
-    
-    // Delete user
     const user = await User.findByIdAndUpdate(id, {state: false});
 
-    res.json({
-        user
-    });
+    res.json(user);
 }
 
 const usersPatch = (req = request, res = response) => {
