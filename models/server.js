@@ -11,10 +11,10 @@ class Server {
         
         this.paths = {
             auth: '/api/auth',
+            search: '/api/search',
             categories: '/api/categories',
             products: '/api/products',
             users: '/api/users',
-
         }
 
         // Database connection
@@ -45,6 +45,7 @@ class Server {
     routes() {
 
         this.app.use(this.paths.auth, require('../routes/auth'));
+        this.app.use(this.paths.search, require('../routes/search'));
         this.app.use(this.paths.categories, require('../routes/categories'));
         this.app.use(this.paths.products, require('../routes/products'));
         this.app.use(this.paths.users, require('../routes/user'));
