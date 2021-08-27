@@ -1,11 +1,10 @@
-const Role = require('../models/role');
-const User = require('../models/user');
+const { Category, Role, User, Product } = require('../models');
 
 
 const isRoleValid = async(role = '') => {
-    const rolExists = await Role.findOne({role});
+    const roleExists = await Role.findOne({role});
 
-    if (!rolExists) {
+    if (!roleExists) {
         throw new Error(`The role ${role} is not registered in the Database`)
     }
 
@@ -31,8 +30,30 @@ const userIDExists = async(id) => {
 
 }
 
+const categoryExists = async(id) => {
+
+    const category = await Category.findById(id);
+    
+    if (!category) {
+        throw new Error(`There is not a category with the id ${id}`)
+    }
+
+}
+
+const productExists = async(id) => {
+
+    const product = await Product.findById(id);
+    
+    if (!product) {
+        throw new Error(`There is not a product with the id ${id}`)
+    }
+
+}
+
 module.exports = {
     isRoleValid,
     emailExists,
-    userIDExists
+    userIDExists,
+    categoryExists,
+    productExists
 }
